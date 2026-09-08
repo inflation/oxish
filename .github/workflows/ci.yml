@@ -38,6 +38,17 @@ jobs:
           targets: x86_64-unknown-freebsd
       - run: cargo check --target x86_64-unknown-freebsd -p oxish
 
+  windows:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: stable
+          targets: x86_64-pc-windows-msvc
+      # the Windows platform implementations are stubs, so this only checks that it builds
+      - run: cargo check --all-targets --target x86_64-pc-windows-msvc -p oxish
+
   msrv:
     runs-on: ubuntu-latest
     steps:
